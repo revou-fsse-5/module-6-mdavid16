@@ -1,0 +1,255 @@
+openapi: 3.0.0
+info:
+  title: Zoo Management API
+  version: 1.0.0
+paths:
+  /employees:
+    get:
+      summary: Get all employees
+      responses:
+        '200':
+          description: A list of employees
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    position:
+                      type: string
+                    department:
+                      type: string
+    post:
+      summary: Add a new employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                position:
+                  type: string
+                department:
+                  type: string
+      responses:
+        '201':
+          description: The created employee
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  position:
+                    type: string
+                  department:
+                    type: string
+  /employees/{id}:
+    get:
+      summary: Get an employee by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: The employee details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  position:
+                    type: string
+                  department:
+                    type: string
+        '404':
+          description: Employee not found
+    put:
+      summary: Update an employee by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                position:
+                  type: string
+                department:
+                  type: string
+      responses:
+        '200':
+          description: The updated employee
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  position:
+                    type: string
+                  department:
+                    type: string
+        '404':
+          description: Employee not found
+    delete:
+      summary: Delete an employee by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '204':
+          description: Employee deleted
+        '404':
+          description: Employee not found
+  /animals:
+    get:
+      summary: Get all animals
+      responses:
+        '200':
+          description: A list of animals
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    species:
+                      type: string
+    post:
+      summary: Add a new animal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                species:
+                  type: string
+      responses:
+        '201':
+          description: The created animal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  species:
+                    type: string
+  /animals/{id}:
+    get:
+      summary: Get an animal by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: The animal details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  species:
+                    type: string
+        '404':
+          description: Animal not found
+    put:
+      summary: Update an animal by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                species:
+                  type: string
+      responses:
+        '200':
+          description: The updated animal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  species:
+                    type: string
+        '404':
+          description: Animal not found
+    delete:
+      summary: Delete an animal by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '204':
+          description: Animal deleted
+        '404':
+          description: Animal not found
